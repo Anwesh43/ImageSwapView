@@ -56,7 +56,7 @@ public class ImageSwapView  {
             });
             relativeLayout.addView(mainImageView,new ViewGroup.LayoutParams(w,h));
             relativeLayout.addView(circularImageView,new ViewGroup.LayoutParams(w/4,w/4));
-
+            activity.setContentView(relativeLayout);
         }
     }
 }

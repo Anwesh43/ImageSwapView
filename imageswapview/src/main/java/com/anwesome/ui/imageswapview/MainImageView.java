@@ -39,6 +39,7 @@ public class MainImageView extends View {
         return bitmap;
     }
     public void update(float factor) {
-        scale *= factor;
+        scale = factor;
+        postInvalidate();
     }
 }

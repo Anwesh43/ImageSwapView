@@ -34,16 +34,18 @@ public class CircularImageView extends View {
             bitmap = Bitmap.createScaledBitmap(bitmap,w,h,true);
         }
         canvas.drawColor(Color.argb(0,0,0,0));
+        circularImage.draw(canvas);
         render++;
     }
     public boolean onTouchEvent(MotionEvent event) {
-        if(onTapListener != null) {
+        if(onTapListener != null && event.getAction() == MotionEvent.ACTION_DOWN) {
             onTapListener.onTap();
         }
         return true;
     }
     public void update(float factor) {
         circularImage.update(factor);
+        postInvalidate();
     }
     private class CircularImage  {
         private float deg = 360;
