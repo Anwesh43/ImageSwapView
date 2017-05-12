@@ -3,6 +3,7 @@ package com.anwesome.ui.imageswapview;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
 
 /**
  * Created by anweshmishra on 12/05/17.
@@ -29,9 +30,15 @@ public class AnimationHandler extends AnimatorListenerAdapter implements ValueAn
         mainImageView.update(factor);
         circularImageView.update(factor);
     }
+    private void swapImages() {
+        Bitmap mainBitmap = mainImageView.getBitmap();
+        Bitmap circleBitmap = circularImageView.getBitmap();
+        circularImageView.setBitmap(mainBitmap);
+        mainImageView.setBitmap(circleBitmap);
+    }
     public void onAnimationEnd(Animator animator) {
         if(dir == -1) {
-
+            swapImages();
         }
 
     }

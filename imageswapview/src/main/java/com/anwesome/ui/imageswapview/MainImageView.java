@@ -11,15 +11,20 @@ import android.view.View;
  */
 public class MainImageView extends View {
     private float scale = 1;
-    private int render = 0;
+    private int render = 0,w,h;
     private Bitmap bitmap;
     public MainImageView(Context context,Bitmap bitmap) {
         super(context);
         this.bitmap = bitmap;
     }
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+        Bitmap.createScaledBitmap(bitmap,w,h,true);
+    }
     public void onDraw(Canvas canvas) {
         if(render == 0) {
-            int w = canvas.getWidth(),h = canvas.getHeight();
+            w = canvas.getWidth();
+            h = canvas.getHeight();
             bitmap = Bitmap.createScaledBitmap(bitmap,w,h,true);
         }
         canvas.drawColor(Color.BLACK);
