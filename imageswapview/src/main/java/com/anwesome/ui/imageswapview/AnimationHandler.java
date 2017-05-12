@@ -12,6 +12,7 @@ public class AnimationHandler extends AnimatorListenerAdapter implements ValueAn
     private CircularImageView circularImageView;
     private MainImageView mainImageView;
     private int dir = 0;
+    private boolean isAnimating = false;
     private ValueAnimator startAnim = ValueAnimator.ofFloat(0,1),endAnim = ValueAnimator.ofFloat(1,0);
     {{
         startAnim.setDuration(500);
@@ -41,6 +42,11 @@ public class AnimationHandler extends AnimatorListenerAdapter implements ValueAn
             swapImages();
             start();
         }
+        else if(dir == 1) {
+            if(isAnimating) {
+                isAnimating = false;
+            }
+        }
 
     }
     private void start() {
@@ -48,8 +54,11 @@ public class AnimationHandler extends AnimatorListenerAdapter implements ValueAn
         startAnim.start();
     }
     public void end() {
-        dir = -1;
-        endAnim.start();
+        if(!isAnimating) {
+            dir = -1;
+            endAnim.start();
+            isAnimating = true;
+        }
     }
 
 }
