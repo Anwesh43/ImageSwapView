@@ -39,10 +39,11 @@ public class AnimationHandler extends AnimatorListenerAdapter implements ValueAn
     public void onAnimationEnd(Animator animator) {
         if(dir == -1) {
             swapImages();
+            start();
         }
 
     }
-    public void start() {
+    private void start() {
         dir = 1;
         startAnim.start();
     }
