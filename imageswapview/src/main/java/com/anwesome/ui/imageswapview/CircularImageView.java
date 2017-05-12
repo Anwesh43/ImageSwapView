@@ -11,9 +11,14 @@ import android.view.View;
 public class CircularImageView extends View {
     private Bitmap bitmap;
     private int w,h,render = 0;
+    private OnTapListener onTapListener;
     private CircularImage circularImage = new CircularImage();
     public CircularImageView(Context context, Bitmap bitmap) {
         super(context);
+        this.bitmap = bitmap;
+    }
+    public void setOnTapListener(OnTapListener onTapListener) {
+        this.onTapListener = onTapListener;
     }
     public Bitmap getBitmap() {
         return bitmap;
@@ -28,6 +33,9 @@ public class CircularImageView extends View {
         render++;
     }
     public boolean onTouchEvent(MotionEvent event) {
+        if(onTapListener != null) {
+            onTapListener.onTap();
+        }
         return true;
     }
     public void update(float factor) {
