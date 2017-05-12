@@ -18,8 +18,7 @@ public class MainImageView extends View {
         this.bitmap = bitmap;
     }
     public void setBitmap(Bitmap bitmap) {
-        this.bitmap = bitmap;
-        Bitmap.createScaledBitmap(bitmap,w,h,true);
+        this.bitmap = Bitmap.createScaledBitmap(bitmap,w,h,true);
     }
     public void onDraw(Canvas canvas) {
         if(render == 0) {
