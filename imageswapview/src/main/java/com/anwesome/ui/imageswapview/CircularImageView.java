@@ -47,18 +47,19 @@ public class CircularImageView extends View {
         postInvalidate();
     }
     private class CircularImage  {
-        private float deg = 360;
+        private float deg = 0;
         public void draw(Canvas canvas) {
-            canvas.drawCircle(w/2,h/2,Math.min(w,h)/2,DrawUtils.paint);
             canvas.save();
             Path path = new Path();
-            path.addArc(new RectF(0,0,w,h),0,deg);
+            path.addArc(new RectF(0,0,w,h),0,360);
             canvas.clipPath(path);
             canvas.drawBitmap(bitmap,0,0,DrawUtils.paint);
             canvas.restore();
+            DrawUtils.paint.setColor(Color.BLACK);
+            canvas.drawArc(new RectF(0,0,w,h),0,deg,true,DrawUtils.paint);
         }
         public void update(float factor) {
-            deg = 360*factor;
+            deg = 360*(1-factor);
         }
     }
 }
